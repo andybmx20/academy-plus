@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avasile <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jhalford <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 21:40:47 by avasile           #+#    #+#             */
-/*   Updated: 2017/08/25 13:32:36 by avasile          ###   ########.fr       */
+/*   Created: 2016/08/15 10:33:27 by jhalford          #+#    #+#             */
+/*   Updated: 2016/08/15 10:33:38 by jhalford         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_boolean.h"
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putstr(char *str)
+int		*ft_map(int *tab, int length, int(*f)(int));
+
+int		times_two(int n)
 {
-	while (*str)
-		write(1, str++, 1);
+	return(2 * n);
 }
 
-t_bool	ft_is_even(int nbr)
+int		main(void)
 {
-	return ((EVEN(nbr)) ? TRUE : FALSE);
-}
+	int		tab[4] = {14, 27, 42, 12};
+	int		*output;
+	int		i;
 
-int		main(int argc, char **argv)
-{
-	(void)argv;
-	if (ft_is_even(argc - 1) == TRUE)
-		ft_putstr(EVEN_MSG);
-	else
-		ft_putstr(ODD_MSG);
-	return (SUCCESS);
+	for (i = 0; i < 4; i++)
+		printf("%i\n", tab[i]);
+	output = ft_map(tab, 4, &times_two);
+	printf("\n");
+	for (i = 0; i < 4; i++)
+		printf("%i\n", tab[i]);
+	printf("\n");
+	for (i = 0; i < 4; i++)
+		printf("%i\n", output[i]);
+	return (1);
 }
